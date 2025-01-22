@@ -175,7 +175,7 @@ function renderFunctionalityArea() {
   fill(80);
   noStroke();
   textSize(18);
-  text("Functions", basicX+50, basicY+10);
+  text("Function", basicX+50, basicY+10);
 }
 
 
@@ -443,7 +443,7 @@ function drawColorButtons() {
 }
 
 function drawFunctionalityButtons() {
-  let basicX = windowWidth-115;
+  let basicX = windowWidth-114;
   let basicY = 60;
   let cameraButton = createButton("📷").position(basicX+35, basicY+35);
   cameraButton.style("border", 0);
