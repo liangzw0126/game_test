@@ -20,6 +20,8 @@ let brushStyle = {
   dotCount: 10,
 }
 
+let eraserStyle = {}
+
 let penTypeCircle = {
   x: 50,
   y: 210,
@@ -73,23 +75,30 @@ function draw() {
   }
   noStroke();
   if(mouseIsPressed == true) {
-    if (currentPenType != penStyle) {
-      for (let i=0; i<currentPenType.dotCount; i+=1) {
-        circle(mouseX+random(currentPenType.traceRadius*-1,currentPenType.traceRadius), mouseY+random(currentPenType.traceRadius*-1,currentPenType.traceRadius), currentPenType.dotDiameter);
+    switch (currentPenType) {
+      case pencilStyle:
+      case brushStyle: {
+        for (let i=0; i<currentPenType.dotCount; i+=1) {
+          circle(mouseX+random(currentPenType.traceRadius*-1,currentPenType.traceRadius), mouseY+random(currentPenType.traceRadius*-1,currentPenType.traceRadius), currentPenType.dotDiameter);
+        }
+        break;
       }
-    } else {
-      let lineHue = mouseX - mouseY;
-      if (currentColor == "random") {
-        stroke(random(0,255),random(0,255),random(0,255));
-        line(pmouseX, pmouseY, mouseX, mouseY);
-      } else {  
-        stroke(currentColor);
-        line(pmouseX, pmouseY, mouseX, mouseY);
+      case penStyle: {
+        if (currentColor == "random") {
+          stroke(random(0,255),random(0,255),random(0,255));
+          line(pmouseX, pmouseY, mouseX, mouseY);
+        } else {  
+          stroke(currentColor);
+          line(pmouseX, pmouseY, mouseX, mouseY);
+        }
+        break;
+      }
+      case eraserStyle: {
+        copy(bgimage, mouseX, mouseY, 20, 20, mouseX, mouseY, 20, 20);
+        break;
       }
     }
-    
   }
-
 }
 
 function writeStart() {
@@ -113,11 +122,11 @@ function mousePressed() {
 
 function renderPenTypeArea() {
   let basicX = 0;
-  let basicY = 75;
+  let basicY = 60;
   strokeWeight(5);
   fill(200);
   stroke("gray");
-  rect(basicX, basicY, 100, 250);
+  rect(basicX, basicY, 100, 305);
 
   textAlign(CENTER, TOP);
   fill(80);
@@ -142,7 +151,7 @@ function renderTitle() {
 
 function renderColorArea() {
   let basicX = 0;
-  let basicY = 355;
+  let basicY = 380;
   strokeWeight(5);
   fill(200);
   stroke("gray");
@@ -156,11 +165,11 @@ function renderColorArea() {
 
 function renderFunctionalityArea() {
   let basicX = windowWidth-100;
-  let basicY = 75;
+  let basicY = 60;
   strokeWeight(5);
   fill(200);
   stroke("gray");
-  rect(basicX, basicY, 100, 250);
+  rect(basicX, basicY, 100, 240);
 
   textAlign(CENTER, TOP);
   fill(80);
@@ -172,7 +181,7 @@ function renderFunctionalityArea() {
 
 function drawPenTypeButtons() {
   let basicX = 5;
-  let basicY = 75;
+  let basicY = 60;
   let pencilButton = createButton("✏️").position(basicX+15, basicY+35);
   pencilButton.style("border", 0);
   pencilButton.style("background-color", "white");
@@ -221,6 +230,22 @@ function drawPenTypeButtons() {
     currentPenButton = penButton;
     currentPenButton.style("background-color", "gray");
   });
+  let eraserButton = createButton("🧼").position(basicX+15, basicY+230);
+  eraserButton.style("border", 0);
+  eraserButton.style("background-color", "white");
+  eraserButton.style("font-size", "45px");
+  eraserButton.style("border-radius", "50%");
+  eraserButton.style("width", "60px");
+  eraserButton.style("height", "60px");
+  eraserButton.style("padding", "0 0 0 0");
+  eraserButton.mousePressed(function() {
+    currentPenType = eraserStyle;
+    if (currentPenButton != null) {
+      currentPenButton.style("background-color", "white");
+    }
+    currentPenButton = eraserButton;
+    currentPenButton.style("background-color", "gray");
+    });
   if (isInitialized == true) {
     currentPenButton = pencilButton;
     currentPenType = pencilStyle;
@@ -230,7 +255,7 @@ function drawPenTypeButtons() {
 
 function drawColorButtons() {
   let basicX = 5;
-  let basicY = 355;
+  let basicY = 380;
   let redButton = createButton("").position(basicX+3, basicY+40);
   redButton.style("border", "1px solid gray");
   redButton.style("background-color", "red");
@@ -419,7 +444,7 @@ function drawColorButtons() {
 
 function drawFunctionalityButtons() {
   let basicX = windowWidth-115;
-  let basicY = 75;
+  let basicY = 60;
   let cameraButton = createButton("📷").position(basicX+35, basicY+35);
   cameraButton.style("border", 0);
   cameraButton.style("background-color", "white");
