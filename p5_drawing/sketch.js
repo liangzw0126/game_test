@@ -492,7 +492,7 @@ function drawFunctionalityButtons() {
         + "Project: Simple Paint\n"
         + "Version: 0.1\n"
         + "Date: 2025-1-22\n"
-        + "Members: Zewen Liang, Yonghao Zhou, Kaijie Xu, Zhi Zhao, Yuying Zhang\n"
+        + "Members: Zewen Liang, Yunhao Zhou, Kaijie Xu, Zhi Zhao, Yuying Zhang\n"
     );
   });
   saveButton.mouseReleased(function() {
