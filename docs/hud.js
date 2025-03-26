@@ -3,7 +3,7 @@ class Hud {
         this.roleImage = window.bgType.BATTERY;
         this.roadLength = roadLength;
         this.x = windowHeight / 50;
-        this.y = windowHeight / 50;
+        this.y = windowHeight * 5 / 100;
         this.textSize = windowHeight / 20;
         this.lives = 3;
         this.lifeIconSize = windowHeight / 15;
@@ -37,7 +37,7 @@ class Hud {
         if (walkedPercentage >= 100) {
             window.isStoryEnded = true;
         }
-        text(Math.round(walkedPercentage) + "%", windowWidth - this.x - 5* this.lifeIconSize, this.y + this.lifeIconSize / 2.0);
+        text(Math.round(walkedPercentage) + "%", windowWidth * 80 / 100, windowHeight * 10 / 100);
     }
 
     relativelyMoveRecord() {
