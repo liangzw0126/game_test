@@ -72,6 +72,8 @@ class ChapterSelector {
         button.size(keyboardButtonSize * sizeMultiplier, keyboardButtonSize);
         button.mousePressed(() => this.simulateKeyPress(keyChar));
         button.mouseReleased(() => this.simulateKeyRelease(keyChar));
+        button.touchStarted(() => this.simulateKeyPress(keyChar));
+        button.touchEnded(() => this.simulateKeyRelease(keyChar));
         this.escapeAndKeyboardButtonList.push(button);
     }
 
