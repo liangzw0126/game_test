@@ -26,6 +26,7 @@ function preload() {
 }
 
 function setup() {
+  frameRate(60);
   createCanvas(windowWidth, windowHeight);
   window.currentGameState = currentGameState;
   window.gameStates = gameStates;
