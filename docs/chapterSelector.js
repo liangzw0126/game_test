@@ -102,7 +102,9 @@ class ChapterSelector {
             'A': 65,
             'D': 68,
             'J': 74,
-            ' ': 32
+            ' ': 32,
+            'W': 87,
+            'S': 83 
         };
         return keyCodes[keyChar];
     }
