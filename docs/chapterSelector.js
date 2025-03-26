@@ -33,7 +33,7 @@ class ChapterSelector {
         let userAgentString = navigator.userAgent.toLowerCase();
         if (userAgentString.includes("android") ||
             userAgentString.includes("iphone") || 
-            userAgentString.includes("ipad") || true) {
+            userAgentString.includes("ipad")) {
             this.createKeyboardButton('A', 10, 70, 0, 0);
             this.createKeyboardButton('S', 10, 70, 2, 0);
             this.createKeyboardButton('D', 10, 70, 4, 0);
